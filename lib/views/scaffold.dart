@@ -25,6 +25,9 @@ Scaffold scaffold(Widget body) {
         ],
       ),
     ),
-    body: body,
+    body: Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: body,
+    ),
   );
 }
