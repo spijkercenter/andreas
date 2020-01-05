@@ -1,35 +1,27 @@
 import 'package:andreas/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
-const _contentSize = 48.0;
 
 Scaffold scaffold(Function(BuildContext) bodyBuilder) {
   return new Scaffold(
     appBar: AppBar(
-      title: Row(
-        children: <Widget>[
-          SvgPicture.asset(
-            "assets/wolf.svg",
+      centerTitle: true,
+      title: FittedBox(
+        fit: BoxFit.fitHeight,
+        child: Text(
+          appName,
+          style: TextStyle(
             color: secondaryColor,
-            height: _contentSize,
+            fontFamily: "Snorelia",
+            fontSize: 48
           ),
-          Text(
-            appName,
-            style: TextStyle(
-              color: secondaryColor,
-              fontFamily: "Snorelia",
-              fontSize: _contentSize,
-            ),
-          ),
-        ],
+        ),
       ),
     ),
     body: Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Builder(
-        builder: (context) => bodyBuilder(context),
-      )
-    ),
+        padding: const EdgeInsets.all(10.0),
+        child: Builder(
+          builder: (context) => bodyBuilder(context),
+        )),
   );
 }
