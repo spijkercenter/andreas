@@ -18,6 +18,17 @@ class _HubState extends State<Hub> {
 
   @override
   Widget build(BuildContext context) => scaffold(
-        Text("You are logged in as " + user.email),
+        Column(
+          children: <Widget>[
+            Text(user.email),
+            Text("Mijn volgende stap is om rollen toe te kunnen kennen aan "
+                "gebruikers, denk hierbij aan het toekennen van de rollen: \n"
+                " - Ik ben leiding bij de Batavieren\n"
+                " - Ik ben lid bij de WGA\n"
+                " - Mijn kind is lid bij de Clemens."),
+            Text("Wil je meedenken over de toekomst van deze app, "
+                "stuur Ivo dan een berichtje of spreek hem aan!")
+          ],
+        ),
       );
 }
