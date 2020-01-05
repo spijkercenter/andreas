@@ -71,3 +71,4 @@
 
 android/app/google-services.json
 .flutter-plugins-dependencies
+.firebase/

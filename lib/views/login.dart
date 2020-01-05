@@ -64,8 +64,11 @@ class _LoginState extends State<Login> {
   }
 }
 
-void _handleCreateAccount(String email, String password) =>
-    _auth.createUserWithEmailAndPassword(email: email, password: password);
+void _handleCreateAccount(String email, String password) async {
+  AuthResult result = await _auth.createUserWithEmailAndPassword(
+      email: email, password: password);
+  result.user.sendEmailVerification();
+}
 
 void _handleForgotPassword(String email) =>
     _auth.sendPasswordResetEmail(email: email);
@@ -75,7 +78,7 @@ void _handleLogin(BuildContext context, String email, String password) async {
   final FirebaseUser user =
       (await _auth.signInWithEmailAndPassword(email: email, password: password))
           .user;
-  if (user != null) {
+  if (user != null && user.isEmailVerified) {
     Navigator.push(context, MaterialPageRoute(builder: (context) => Hub(user)));
   }
 }
