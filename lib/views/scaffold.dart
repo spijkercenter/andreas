@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 const _contentSize = 48.0;
 
-Scaffold scaffold(Widget body) {
+Scaffold scaffold(Function(BuildContext) bodyBuilder) {
   return new Scaffold(
     appBar: AppBar(
       title: Row(
@@ -27,7 +27,9 @@ Scaffold scaffold(Widget body) {
     ),
     body: Padding(
       padding: const EdgeInsets.all(10.0),
-      child: body,
+      child: Builder(
+        builder: (context) => bodyBuilder(context),
+      )
     ),
   );
 }

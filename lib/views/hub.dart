@@ -17,7 +17,7 @@ class _HubState extends State<Hub> {
   _HubState(this.user);
 
   @override
-  Widget build(BuildContext context) => scaffold(
+  Widget build(BuildContext context) => scaffold((context)=>
         Column(
           children: <Widget>[
             Text(user.email),

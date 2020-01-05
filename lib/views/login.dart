@@ -16,8 +16,8 @@ class _LoginState extends State<Login> {
   final passwordController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) => scaffold(
-        Column(
+  Widget build(BuildContext _) => scaffold(
+        (context) => Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             TextField(
@@ -36,7 +36,7 @@ class _LoginState extends State<Login> {
             ButtonBar(
               children: <Widget>[
                 button("Wachtwoord vergeten",
-                    () => _handleForgotPassword(emailController.text)),
+                    () => _handleForgotPassword(context, emailController.text)),
                 mainButton(
                     "Inloggen",
                     () async => _handleLogin(context, emailController.text,
@@ -48,7 +48,7 @@ class _LoginState extends State<Login> {
                 button(
                   "Nieuw account...",
                   () => _handleCreateAccount(
-                      emailController.text, passwordController.text),
+                      context, emailController.text, passwordController.text),
                 ),
               ],
             )
@@ -64,21 +64,51 @@ class _LoginState extends State<Login> {
   }
 }
 
-void _handleCreateAccount(String email, String password) async {
-  AuthResult result = await _auth.createUserWithEmailAndPassword(
-      email: email, password: password);
-  result.user.sendEmailVerification();
+bool _require(BuildContext context, String itemName, String item) {
+  if (item == null || item.isEmpty) {
+    showSnackbar(context, "Voer eerst een " + itemName + " in");
+    return false;
+  }
+  return true;
 }
 
-void _handleForgotPassword(String email) =>
+bool _requireEmail(BuildContext context, String email) =>
+    _require(context, "emailadres", email);
+
+bool _requirePassword(BuildContext context, String password) =>
+    _require(context, "wachtwoord", password);
+
+void _handleCreateAccount(
+    BuildContext context, String email, String password) async {
+  if (_requireEmail(context, email) && _requirePassword(context, password)) {
+    AuthResult result = await _auth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    result.user.sendEmailVerification();
+    showSnackbar(
+        context, "Account aangemaakt, bevestig je email alvorens in te loggen");
+  }
+}
+
+void _handleForgotPassword(BuildContext context, String email) {
+  if (_requireEmail(context, email)) {
     _auth.sendPasswordResetEmail(email: email);
+    showSnackbar(context, "Wachtwoordherstel gemaild");
+  }
+}
 
 void _handleLogin(BuildContext context, String email, String password) async {
-  // TODO add wrong email/password notification
-  final FirebaseUser user =
-      (await _auth.signInWithEmailAndPassword(email: email, password: password))
-          .user;
-  if (user != null && user.isEmailVerified) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Hub(user)));
+  if (_requireEmail(context, email) && _requirePassword(context, password)) {
+    final FirebaseUser user = (await _auth.signInWithEmailAndPassword(
+            email: email, password: password))
+        .user;
+    if (user != null && user.isEmailVerified) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Hub(user)));
+    } else {
+      showSnackbar(
+          context,
+          "Deze gebruiker is onbekend of nog niet bevestigd\n"
+          "Emailbevesting opnieuw sturen?");
+    }
   }
 }

@@ -25,3 +25,7 @@ mainButton(String text, VoidCallback onPressed) => RaisedButton(
       shape: StadiumBorder(),
     );
 
+showSnackbar(BuildContext context, String text) =>
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(text),
+    ));
