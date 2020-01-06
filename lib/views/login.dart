@@ -46,12 +46,27 @@ class _LoginState extends State<Login> {
             ButtonBar(
               children: <Widget>[
                 button(
-                  "Nieuw account...",
+                  "Nieuw account",
                   () => _handleCreateAccount(
                       context, emailController.text, passwordController.text),
                 ),
               ],
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Text(
+                  "Deze applicatie is onder ontwikkeling en nog niet af. "
+                  "Er zijn geen garanties op de juistheid of veiligheid van gegevens. "
+                  "Hier wordt nog aan gewerkt. "
+                  "Vul dus niks in wat een ander niet te weten mag komen. "
+                  "Uw gegevens kunnen tijdens het ontwikkelen ook verwijderd of "
+                  "anderszins aangepast worden, gebruik dit dus (nog) niet als "
+                  "vervanging van uw huidige systeem.\n\n"
+                  "Ben je benieuwd naar hoe dit werkt, kijk naar de code op: "
+                  "github.com/spijkercenter/andreas "
+                  "of doe navraag bij de ontwikkelaar, mits je die kent.\n\n"
+                  "Input en terugkoppeling worden gewaardeerd!"),
+            ),
           ],
         ),
       );
