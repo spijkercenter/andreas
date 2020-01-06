@@ -1,6 +1,6 @@
 import 'package:andreas/views/elements.dart';
 import 'package:andreas/views/hub.dart';
-import 'package:andreas/views/scaffold.dart';
+import 'package:andreas/views/roots.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -61,11 +61,10 @@ class _LoginState extends State<Login> {
                   "Vul dus niks in wat een ander niet te weten mag komen. "
                   "Uw gegevens kunnen tijdens het ontwikkelen ook verwijderd of "
                   "anderszins aangepast worden, gebruik dit dus (nog) niet als "
-                  "vervanging van uw huidige systeem.\n\n"
-                  "Ben je benieuwd naar hoe dit werkt, kijk naar de code op: "
-                  "github.com/spijkercenter/andreas "
-                  "of doe navraag bij de ontwikkelaar, mits je die kent.\n\n"
-                  "Input en terugkoppeling worden gewaardeerd!"),
+                  "vervanging van uw huidige systeem."
+                  "\n\nBen je benieuwd naar hoe dit werkt, kijk naar de code op: "
+                  "github.com/spijkercenter/andreas of doe navraag bij de ontwikkelaar."
+                  "\n\nInput en terugkoppeling worden gewaardeerd!"),
             ),
           ],
         ),
