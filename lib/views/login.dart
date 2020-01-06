@@ -55,9 +55,10 @@ class _LoginState extends State<Login> {
             Padding(
               padding: const EdgeInsets.all(30.0),
               child: Text(
-                  "Deze applicatie is onder ontwikkeling en nog niet af. "
+                  "Deze app wordt persoonlijk ontwikkeld zonder goedkeuring van "
+                  "of verbondenheid met enige organizatie "
+                  "\n\nDeze applicatie is onder ontwikkeling en dus nog niet af. "
                   "Er zijn geen garanties op de juistheid of veiligheid van gegevens. "
-                  "Hier wordt nog aan gewerkt. "
                   "Vul dus niks in wat een ander niet te weten mag komen. "
                   "Uw gegevens kunnen tijdens het ontwikkelen ook verwijderd of "
                   "anderszins aangepast worden, gebruik dit dus (nog) niet als "
