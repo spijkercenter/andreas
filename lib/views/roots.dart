@@ -14,7 +14,7 @@ final Widget _title = FittedBox(
   ),
 );
 
-Widget padScreen(Function(BuildContext) bodyBuilder) => Padding(
+Widget _padScreen(Function(BuildContext) bodyBuilder) => Padding(
       padding: const EdgeInsets.all(10.0),
       child: SingleChildScrollView(
         child: Builder(
@@ -37,7 +37,7 @@ DefaultTabController tabView(List<TabElement> elements) {
       .map((i) => Tab(icon: i))
       .toList();
 
-  final bodies = elements.map((te) => padScreen(te.bodyBuilder)).toList();
+  final bodies = elements.map((te) => _padScreen(te.bodyBuilder)).toList();
 
   return DefaultTabController(
     length: elements.length,
@@ -58,6 +58,6 @@ Scaffold scaffold(Function(BuildContext) bodyBuilder) {
       centerTitle: true,
       title: _title,
     ),
-    body: padScreen(bodyBuilder),
+    body: _padScreen(bodyBuilder),
   );
 }
