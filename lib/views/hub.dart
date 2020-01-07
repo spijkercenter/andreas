@@ -33,10 +33,25 @@ class _HubState extends State<Hub> {
         ),
         TabElement(
           Icons.security,
-          (_) => Text(
-              "In dit tabblad zul je in de toekomst aan kunnen geven dat je een "
-              "VRIJWILLIGER bent. Hiervoor is je NAAM en AFDELING vereist."),
+          (_) => Column(
+            children: <Widget>[
+              Text(
+                  "In dit tabblad zul je in de toekomst aan kunnen geven dat je een "
+                  "VRIJWILLIGER bent. Hiervoor is je NAAM en AFDELING vereist."),
+              FutureBuilder<List<String>>(
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    return Column(
+                      children: (snapshot.data as List<String>)
+                          .map((b) => Text(b))
+                          .toList(),
+                    );
+                  }
+                  return CircularProgressIndicator();
+                },
+              )
+            ],
+          ),
         ),
       ]);
-//            Text("Ingelogd als: " + user.email),
 }
