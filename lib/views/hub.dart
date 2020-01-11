@@ -17,41 +17,32 @@ class _HubState extends State<Hub> {
   _HubState(this.user);
 
   @override
-  Widget build(BuildContext context) => tabView([
-        TabElement(
-          Icons.supervisor_account,
-          (_) => Text(
-              "In dit tabblad zul je in de toekomst aan kunnen geven dat je een "
-              "OUDER/VERZORGER van een LID of meerdere LEDEN bent. Hiervoor is je "
-              "NAAM en per LID hun NAAM en AFDELING vereist."),
-        ),
-        TabElement(
-          Icons.person,
-          (_) => Text("In dit tabblad zul je in de toekomst aan kunnen geven "
-              "dat je ee (WATER)GIDS of (ZEE)VERKENNER bent. "
-              "Hiervoor is je NAAM en AFDELING vereist."),
-        ),
-        TabElement(
-          Icons.security,
-          (_) => Column(
-            children: <Widget>[
-              Text(
-                  "In dit tabblad zul je in de toekomst aan kunnen geven dat je een "
-                  "VRIJWILLIGER bent. Hiervoor is je NAAM en AFDELING vereist."),
-              FutureBuilder<List<String>>(
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.hasData) {
-                    return Column(
-                      children: (snapshot.data as List<String>)
-                          .map((b) => Text(b))
-                          .toList(),
-                    );
-                  }
-                  return CircularProgressIndicator();
-                },
-              )
-            ],
+  Widget build(BuildContext context) => tabView(
+        [
+          TabElement(
+            Icons.supervisor_account,
+            (_) => Text(
+                "In dit tabblad zul je in de toekomst aan kunnen geven dat je een "
+                "OUDER/VERZORGER van een LID of meerdere LEDEN bent. Hiervoor is je "
+                "NAAM en per LID hun NAAM en AFDELING vereist."),
           ),
-        ),
-      ]);
+          TabElement(
+            Icons.person,
+            (_) => Text("In dit tabblad zul je in de toekomst aan kunnen geven "
+                "dat je ee (WATER)GIDS of (ZEE)VERKENNER bent. "
+                "Hiervoor is je NAAM en AFDELING vereist."),
+          ),
+          TabElement(
+            Icons.security,
+            (_) => Column(
+              children: <Widget>[
+                Text(
+                    "In dit tabblad zul je in de toekomst aan kunnen geven dat je een "
+                    "VRIJWILLIGER bent. Hiervoor is je NAAM en AFDELING vereist."),
+                CircularProgressIndicator()
+              ],
+            ),
+          ),
+        ],
+      );
 }
