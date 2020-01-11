@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
+    "lib": [
+      "esnext.asynciterable"
+    ],
     "module": "commonjs",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
