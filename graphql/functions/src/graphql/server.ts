@@ -20,7 +20,7 @@ function gqlServer() {
         typeDefs: schema,
         resolvers,
         introspection: true,
-        playground: true,
+        playground: false,
     });
 
     apolloServer.applyMiddleware({ app, path: '/', cors: true });
